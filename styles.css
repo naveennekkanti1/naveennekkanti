@@ -30,7 +30,6 @@ nav{
 .logo
 {
   width: 300px;
-
 }
 nav ul li{
   display:inline-block;
@@ -282,6 +281,10 @@ nav ul li a:hover::after{
   display:inline-block;
   background:#ff004f;
 }
+.btn.btn2:hover{
+  color:whitesmoke;
+  transform: translateY(-5px);
+}
 .contact-right form{
   width:100%;
 }
@@ -315,7 +318,7 @@ nav .fas{
   display:none;
 }
 
-@media only screen and(max-width:600px){
+@media only screen and (max-width: 400px){
   #header{
     background-image: url(pic2.jpg);
   }
@@ -339,7 +342,7 @@ nav .fas{
     height:100vh;
     padding-top:50px;
     z-index:2;
-    transition:right;
+    transition:right 0.5s;
   }
   nav ul li{
     display:block;
@@ -375,7 +378,7 @@ nav .fas{
   }
 }
 #msg{
-  color: #61b752;
+  color:blueviolet;
   margin-top:-40px;
   display:block;
 }
