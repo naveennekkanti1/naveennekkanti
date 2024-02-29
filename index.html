@@ -8,36 +8,9 @@
     <link rel="icon" href="logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/aa83cdd7e7.js" crossorigin="anonymous"></script>
-    <style>
-        /* Introductory overlay styles */
-        .intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 9999;
-        }
-
-        .intro-message {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
+    
   </head>
   <body>
-    <div class="intro-overlay">
-    <div class="intro-message">Hi! Welcome to Naveen's Portfolio</div>
-    <div class="loading-spinner"></div>
-</div>
   <div id="header">
     <div class="container">
         <nav>
@@ -287,9 +260,6 @@
         })
         .catch(error => console.error('Error!', error.message))
     })
-    setTimeout(function() {
-            window.location.href = "portfolio.html"; // Redirect to the portfolio page
-        }, 3000);
   </script>
   </body>
 </html>
