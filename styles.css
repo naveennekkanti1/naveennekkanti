@@ -71,7 +71,7 @@ nav ul li a:hover::after{
   padding:80px 0;
   color: #ababab;
 }
-.about h1{
+#about h1{
   color:white;
 }
 .row{
@@ -136,7 +136,7 @@ nav ul li a:hover::after{
 #projects{
   padding:30px 0;
 }
-.projects h1{
+#projects h1{
   color:white;
 }
 .projects-list{
@@ -179,11 +179,14 @@ nav ul li a:hover::after{
   padding:80px 0;
   color: #ababab;
 } 
-.interest h1{
+#interest h1{
   color:white;
 }
 #certificate{
    padding:50px 0;
+}
+#certificate h1{
+  color:white;
 }
 .certificate-list{
   display:grid;
