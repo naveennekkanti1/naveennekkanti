@@ -237,6 +237,9 @@ nav ul li a:hover::after{
 .contact-left{
   flex-basis:35%;
 }
+.contact-left h1{
+  color:white;
+}
 .contact-right{
   flex-basis:60%;
 }
