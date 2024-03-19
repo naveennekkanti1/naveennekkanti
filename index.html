@@ -11,6 +11,10 @@
     
   </head>
   <body>
+     <div class="loading-screen" id="loadingScreen"> <!-- Loading screen -->
+      <div class="loader"></div>
+    </div>
+   <div class="content" id="content" style="display: none;"> <!-- Content hidden until loaded -->
   <div id="header">
     <div class="container">
         <nav>
@@ -221,6 +225,7 @@
       <p>Copyright © Naveen Nekkanti</p>
     </div>
   </div>
+</div>
   <script>
     var tablinks=document.getElementsByClassName("tab-links");
     var tabcontents=document.getElementsByClassName("tab-contents");
@@ -262,5 +267,10 @@
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+    <script>
+       window.addEventListener('load', function() {
+        document.getElementById('loadingScreen').style.display = 'none'; // Hide loading screen
+        document.getElementById('content').style.display = 'block'; // Show content
+    </script>
   </body>
 </html>
