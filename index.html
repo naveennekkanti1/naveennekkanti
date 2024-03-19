@@ -262,5 +262,15 @@
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+  <script>
+  let visitorCount = 0; 
+
+  function updateVisitorCount() {
+    visitorCount++; 
+    document.getElementById('visitorCount').textContent = visitorCount;
+  }
+  setInterval(updateVisitorCount, 1000);
+</script>
+
   </body>
 </html>
