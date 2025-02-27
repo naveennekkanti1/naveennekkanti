@@ -5,18 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naveen Nekkanti | Web Developer</title>
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/aa83cdd7e7.js" crossorigin="anonymous"></script>
+    <style>
+      /* Additional styles for the logo */
+      .logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        transition: transform 0.3s;
+        object-fit: contain;
+      }
+    </style>
   </head>
   <body>
   <div id="header">
     <div class="container">
         <nav>
-           <img src="logo.png" class="logo" alt="Naveen Nekkanti Logo">
+           <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <!-- Circular Background -->
+            <circle cx="100" cy="100" r="95" fill="#121212" stroke="#00bcd4" stroke-width="3"/>
+            
+            <!-- Inner Circle Accent -->
+            <circle cx="100" cy="100" r="85" fill="none" stroke="#00bcd4" stroke-width="1" stroke-opacity="0.3"/>
+            
+            <!-- Text Path for Name -->
+            <path id="textPath" d="M100,30 A70,70 0 1,1 99.9,30" fill="none"/>
+            
+            <!-- Initials in Center -->
+            <text x="100" y="105" font-family="Poppins, sans-serif" font-size="50" font-weight="700" text-anchor="middle" fill="#ffffff">NN</text>
+            
+            <!-- First letter stylized with teal -->
+            <text x="87" y="105" font-family="Poppins, sans-serif" font-size="50" font-weight="700" text-anchor="middle" fill="#00bcd4">N</text>
+            
+            <!-- Full Name around the circle -->
+            <text font-family="Poppins, sans-serif" font-size="14" fill="#ffffff" letter-spacing="2">
+              <textPath href="#textPath" startOffset="25%">NAVEEN NEKKANTI</textPath>
+            </text>
+            
+            <!-- Decorative Elements -->
+            <circle cx="100" cy="30" r="3" fill="#00bcd4"/>
+            <circle cx="100" cy="170" r="3" fill="#00bcd4"/>
+            
+            <!-- Web Developer Text -->
+            <text x="100" y="125" font-family="Poppins, sans-serif" font-size="10" font-weight="300" text-anchor="middle" fill="#aaaaaa">WEB DEVELOPER</text>
+          </svg>
            <ul id="sidemenu">
             <li><a href="#header">Home</a></li>
             <li><a href="#about">About</a></li>
