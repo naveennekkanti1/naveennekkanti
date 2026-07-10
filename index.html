@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naveen Nekkanti | Web Developer</title>
+    <script>
+      // Apply saved theme before first paint to avoid a flash of the wrong theme
+      (function(){
+        try{
+          var t = localStorage.getItem('nn_theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+        }catch(e){}
+      })();
+    </script>
     <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +35,7 @@
         --border: rgba(255, 255, 255, 0.08);
         --text: #eef0f5;
         --text-muted: #9aa0ae;
+        --text-soft: #cfd3dc;
         --accent: #2dd4bf;
         --accent-dim: rgba(45, 212, 191, 0.14);
         --accent-2: #f5a623;
@@ -38,10 +48,34 @@
         --radius-lg: 22px;
         --nav-h: 78px;
         --container-pad: 8%;
+        --nav-bg: rgba(8, 9, 13, 0.85);
+        --on-accent: #06110f;
+        color-scheme: dark;
+      }
+
+      /* ---------- Light theme ---------- */
+      [data-theme="light"]{
+        --bg: #f6f7fb;
+        --bg-alt: #eceef4;
+        --surface: #ffffff;
+        --surface-2: #eef0f6;
+        --border: rgba(10, 12, 24, 0.10);
+        --text: #14151d;
+        --text-muted: #5b6072;
+        --text-soft: #3c4150;
+        --accent: #0d9488;
+        --accent-dim: rgba(13, 148, 136, 0.12);
+        --accent-2: #b45309;
+        --accent-2-dim: rgba(180, 83, 9, 0.12);
+        --danger: #c8362a;
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --on-accent: #ffffff;
+        color-scheme: light;
       }
 
       html{
         scroll-behavior: smooth;
+        transition: background-color 0.3s ease;
       }
 
       @media (prefers-reduced-motion: reduce){
@@ -155,7 +189,7 @@
         right: 0;
         z-index: 1000;
         min-height: var(--nav-h);
-        background-color: rgba(8, 9, 13, 0.85);
+        background-color: var(--nav-bg);
         border-bottom: 1px solid var(--border);
         backdrop-filter: blur(14px);
         transition: 0.3s;
@@ -213,6 +247,28 @@
       .visitor-badge #visitorCount{
         color: var(--text);
         font-weight: 600;
+      }
+
+      .theme-toggle{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+
+      .theme-toggle:hover{
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px) rotate(15deg);
       }
 
       nav ul{
@@ -325,7 +381,7 @@
       }
 
       .about-col-1 > p {
-        color: #cfd3dc;
+        color: var(--text-soft);
         font-size: 17px;
         line-height: 1.85;
         margin-bottom: 30px;
@@ -380,7 +436,7 @@
       .tab-contents ul li{
         list-style: none;
         margin: 22px 0;
-        color: #cfd3dc;
+        color: var(--text-soft);
         position: relative;
         padding-left: 28px;
       }
@@ -446,8 +502,24 @@
       .experience-details {
         margin-top: 8px;
         line-height: 1.7;
-        color: #cfd3dc;
+        color: var(--text-soft);
         font-size: 15px;
+      }
+
+      .exp-meta{
+        display: block;
+        font-family: var(--mono);
+        color: var(--text-muted);
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .exp-stack{
+        display: block;
+        font-family: var(--mono);
+        color: var(--accent);
+        font-size: 12px;
+        opacity: 0.9;
       }
 
       /* ---------- Projects Section ---------- */
@@ -469,11 +541,13 @@
         font-size: 15px;
         font-weight: 300;
         border-radius: var(--radius);
-        transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+        transition: transform 0.12s ease-out, box-shadow 0.35s, border-color 0.35s;
         height: 100%;
         display: flex;
         flex-direction: column;
         border: 1px solid var(--border);
+        transform-style: preserve-3d;
+        will-change: transform;
       }
 
       .projects-list div i{
@@ -561,7 +635,9 @@
         overflow: hidden;
         border: 1px solid var(--border);
         height: 230px;
-        transition: transform 0.4s;
+        transition: transform 0.12s ease-out, border-color 0.35s;
+        transform-style: preserve-3d;
+        will-change: transform;
       }
 
       .certificate img{
@@ -644,7 +720,7 @@
 
       .contact-left p{
         margin-top: 22px;
-        color: #cfd3dc;
+        color: var(--text-soft);
         font-size: 15px;
         display: flex;
         align-items: center;
@@ -700,15 +776,19 @@
       }
 
       .btn:hover {
-        color: #06110f;
+        color: var(--on-accent);
         background: var(--accent);
         transform: translateY(-3px);
         box-shadow: 0 10px 20px var(--accent-dim);
       }
 
+      .btn:active{
+        transform: translateY(-1px) scale(0.97);
+      }
+
       .btn.btn2{
         background: var(--accent);
-        color: #06110f;
+        color: var(--on-accent);
         border: 2px solid var(--accent);
       }
 
@@ -795,8 +875,8 @@
         display: inline-block;
         width: 16px;
         height: 16px;
-        border: 2px solid #06110f55;
-        border-top: 2px solid #06110f;
+        border: 2px solid color-mix(in srgb, currentColor 35%, transparent);
+        border-top: 2px solid currentColor;
         border-radius: 50%;
         animation: spin 0.9s linear infinite;
         margin-right: 8px;
@@ -898,7 +978,7 @@
       .toast .toast-body {
         font-size: 13px;
         line-height: 1.5;
-        color: #cfd3dc;
+        color: var(--text-soft);
       }
 
       /* ---------- Responsive ---------- */
@@ -1055,6 +1135,9 @@
       <li><a href="#contact">Contact</a></li>
       <i class="fas fa-times" onclick="closemenu()"></i>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
     <i class="fas fa-bars" onclick="openmenu()"></i>
   </nav>
 
@@ -1079,10 +1162,12 @@
         <div class="about-col-1">
           <p class="tag-label">&lt;about&gt;</p>
           <h1 class="sub-title">ABOUT ME</h1>
-          <p>I am an enthusiastic, self-motivated, reliable, responsible and hard working person. 
-            I am a mature team worker and adaptable to all challenging situations. I am able to 
-            work well both in a team environment as well as using own initiative. I am able to 
-            work well under pressure and adhere to strict deadlines.</p>
+          <p>I'm an AI Engineer at Tata Consultancy Services, where I build LLM-powered automation
+            and deterministic AI platforms using Python, FastAPI, React, RAG pipelines and PostgreSQL —
+            turning ambiguous user stories into production-ready, auditable systems. I'm a mature team
+            worker who's equally comfortable driving things independently, and I bring the same
+            discipline under deadlines to my own projects, 450+ solved problems across Codechef,
+            LeetCode and HackerRank, and my photography on the side.</p>
             <div class="tab-titles">
               <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
               <p class="tab-links" onclick="opentab('education')">Education</p>
@@ -1090,43 +1175,52 @@
             </div>
             <div class="tab-contents active-tab" id="skills">
               <ul>
-                <li><span>WEB DESIGN</span>
-                Designing responsive and user-friendly websites with modern frameworks and technologies</li>
-                <li><span>UI/UX</span>
-                Creating intuitive and engaging web/app interfaces focused on user experience</li>
-                <li><span>PYTHON</span>
-                Building robust applications and implementing machine learning solutions</li>
-                <li><span>PHOTOGRAPHY</span>
-                Capturing beautiful moments of nature and landscapes with creative perspectives</li>
+                <li><span>AI &amp; BACKEND</span>
+                Python, FastAPI, Flask, LLMs, RAG pipelines, PostgreSQL, Spring Boot, Microservices</li>
+                <li><span>FRONTEND</span>
+                React, React Native, responsive and user-friendly UI/UX design</li>
+                <li><span>LANGUAGES &amp; CS FUNDAMENTALS</span>
+                C++, Java, MySQL, Data Structures and Algorithms</li>
+                <li><span>TOOLS &amp; PRACTICES</span>
+                Git, GitHub, IntelliJ, VS Code, Linux, Agile/Sprint workflows</li>
               </ul>
             </div>
             <div class="tab-contents" id="education">
               <ul>
-                <li><span>2019</span>
-                Graduated From Gowtham High School with distinction</li>
-                <li><span>2019-2021</span>
-                Completed studies at Srichaitanya Institutes with focus on computer sciences</li>
-                <li><span>2021-Current</span>
-                Pursuing B.Tech Degree in SRM University AP, specializing in Computer Science and Engineering</li>
+                <li><span>2018 – 2019</span>
+                Secondary Education, Gowtham Concept School — 389/500</li>
+                <li><span>2019 – 2021</span>
+                Intermediate (MPC), Sri Chaitanya — 904/1000</li>
+                <li><span>2021 – 2025</span>
+                B.Tech in Computer Science and Engineering, SRM University AP — CGPA 8.76/10</li>
               </ul>
             </div>
             <div class="tab-contents" id="experience">
               <ul>
                 <li>
                   <div class="experience-item">
-                    <div class="company-badge">Engati</div>
-                    <span style="display:block; font-family: var(--mono); color: var(--text-muted); font-size: 13px; margin-bottom: 6px;">2025 — Present</span>
+                    <div class="company-badge">Tata Consultancy Services</div>
+                    <span class="exp-meta">AI Engineer · 2025 — Present</span>
+                    <span class="exp-stack">Python · FastAPI · React · RAG · PostgreSQL · LLM</span>
                     <div class="experience-details">
-                      Developed custom dashboard solutions based on client requirements. Led the implementation of automation features that improved workflow efficiency by 40%. Collaborated with cross-functional teams to deliver high-quality software solutions on tight deadlines.
+                      Integrate LLM-powered automation to process user stories end-to-end — generating
+                      production-ready code and supporting streamlined deployment. Combine LLMs with
+                      business rules to enable compliant, auditable case resolution, and built a
+                      deterministic AI-first platform to automate and govern processes at the
+                      production level.
                     </div>
                   </div>
                 </li>
                 <li>
                   <div class="experience-item">
-                    <div class="company-badge">APSSDC</div>
-                    <span style="display:block; font-family: var(--mono); color: var(--text-muted); font-size: 13px; margin-bottom: 6px;">2023</span>
+                    <div class="company-badge">Engati Technologies</div>
+                    <span class="exp-meta">Software Development Intern · 2024 — 2025</span>
+                    <span class="exp-stack">Java · Spring Boot · Redis · Kafka · React Native · Android Studio</span>
                     <div class="experience-details">
-                      Worked as Web Technologies Developer specializing in Django framework, creating robust web applications and implementing database solutions. Designed and maintained responsive web interfaces with focus on user experience.
+                      Built a feature for the Moplet client that triggers WhatsApp and Sandbox messages,
+                      automating packet delivery to users and clients. Collaborated with cross-functional
+                      teams to improve message handling reliability, and used Spring Boot and Redis to
+                      build scalable, efficient communication pipelines.
                     </div>
                   </div>
                 </li>
@@ -1348,6 +1442,53 @@
       document.getElementById(tabname).classList.add("active-tab");
     }
     
+    // Theme toggle (dark / light), persisted in localStorage
+    (function initThemeToggle(){
+      const toggle = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+
+      function syncIcon(){
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+      }
+
+      syncIcon();
+
+      toggle.addEventListener('click', function(){
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem('nn_theme', next); }catch(e){}
+        syncIcon();
+      });
+    })();
+
+    // 3D tilt effect for project cards and certificates
+    // Skipped entirely if the visitor prefers reduced motion.
+    (function initTilt(){
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      function addTilt(selector, maxTilt, lift, scale){
+        document.querySelectorAll(selector).forEach(function(card){
+          card.addEventListener('mousemove', function(e){
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * maxTilt;
+            const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * maxTilt;
+            card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(' + lift + 'px) scale(' + scale + ')';
+          });
+          card.addEventListener('mouseleave', function(){
+            card.style.transform = '';
+          });
+        });
+      }
+
+      addTilt('.projects-list > div', 7, -8, 1.02);
+      addTilt('.certificate', 8, -4, 1.03);
+    })();
+
     // Mobile menu functionality
     var sidemeu = document.getElementById("sidemenu");
     
